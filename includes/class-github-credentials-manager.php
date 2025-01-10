@@ -69,6 +69,37 @@ class GitHub_Credentials_Manager {
                 submit_button();
                 ?>
             </form>
+            <h2>Usage Instructions</h2>
+            <h3>Storing GitHub Credentials</h3>
+            <p>Navigate to <strong>Settings > GitHub Credentials</strong> in the WordPress admin dashboard.</p>
+            <p>Follow the detailed instructions on the settings page to generate a GitHub personal access token. Enter the token in the provided field and click <strong>Save Changes</strong>.</p>
+            <h3>Recalling Stored Credentials</h3>
+            <p>To recall the stored GitHub credentials in your WordPress application, use the global function <code>get_github_token()</code>. This function retrieves the GitHub token stored in the WordPress database.</p>
+            <pre><code class="language-php">// Retrieve the GitHub token
+$github_token = get_github_token();
+
+// Use the token to make an API request to GitHub
+$response = wp_remote_post('https://api.github.com/repos/your-username/your-repo/issues', array(
+    'headers' => array(
+        'Authorization' => 'Bearer ' . $github_token,
+        'Content-Type' => 'application/json'
+    ),
+    'body' => json_encode(array(
+        'title' => 'Issue Title',
+        'body' => 'Issue Body',
+        'labels' => array('bug')
+    ))
+));
+
+if (is_wp_error($response)) {
+    error_log('GitHub API request failed: ' . $response->get_error_message());
+} else {
+    $response_body = wp_remote_retrieve_body($response);
+    $response_code = wp_remote_retrieve_response_code($response);
+    if ($response_code !== 201) {
+        error_log('GitHub API request failed: ' . $response_body);
+    }
+}</code></pre>
         </div>
         <?php
     }
