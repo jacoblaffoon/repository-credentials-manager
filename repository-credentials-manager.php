@@ -16,8 +16,8 @@ if (!defined('ABSPATH')) {
 require_once plugin_dir_path(__FILE__) . 'includes/class-repository-credentials-manager.php';
 
 // Initialize the plugin
-function wp_repository_credentials_manager_init() {
-    $wp_repository_credentials_manager = new WP_Repository_Credentials_Manager();
-    $wp_repository_credentials_manager->init();
+function repository_credentials_manager_init() {
+    $repository_credentials_manager = new Repository_Credentials_Manager();
+    $repository_credentials_manager->init();
 }
-add_action('plugins_loaded', 'wp_repository_credentials_manager_init');
+add_action('plugins_loaded', 'repository_credentials_manager_init');
