@@ -21,7 +21,9 @@ class GitHub_Credentials_Manager {
     }
 
     public function register_settings() {
-        register_setting('github_credentials_options', 'github_token');
+        register_setting('github_credentials_options', 'github_token', array(
+            'sanitize_callback' => array($this, 'sanitize_github_token')
+        ));
 
         add_settings_section(
             'github_credentials_section',
@@ -39,6 +41,11 @@ class GitHub_Credentials_Manager {
         );
     }
 
+    public function sanitize_github_token($input) {
+        // Add sanitization logic if necessary
+        return sanitize_text_field($input);
+    }
+
     public function settings_section_callback() {
         echo '<p>Enter your GitHub token below. This token will be used to authenticate API requests to GitHub.</p>';
         echo '<p><strong>Instructions:</strong></p>';
@@ -47,13 +54,14 @@ class GitHub_Credentials_Manager {
         echo '<li>Navigate to "Developer settings" > "Personal access tokens".</li>';
         echo '<li>Click "Generate new token".</li>';
         echo '<li>Select the necessary scopes for your token (e.g., repo, user).</li>';
-        echo '<li>Click "Generate token" and copy the token value. </li>';
+        echo '<li>Click "Generate token" and copy the token value. <strong>Note:</strong> You won\'t be able to see it again once you navigate away from the page.</li>';
         echo '<li>Paste the token in the field below and click "Save Changes".</li>';
         echo '</ol>';
     }
 
     public function github_token_field_callback() {
-        $token = get_option('github_token');
+        $user_id = get_current_user_id();
+        $token = get_user_meta($user_id, 'github_token', true);
         echo '<input type="text" id="github_token" name="github_token" value="'. esc_attr($token) .'" />';
         echo '<p class="description">Your GitHub token is required to authenticate API requests.</p>';
     }
@@ -107,6 +115,17 @@ if (is_wp_error($response)) {
 
 // Make the GitHub token globally accessible
 function get_github_token() {
-    return get_option('github_token');
+    $user_id = get_current_user_id();
+    return get_user_meta($user_id, 'github_token', true);
 }
+
+// Save GitHub token for the current user
+function save_github_token() {
+    if (isset($_POST['github_token'])) {
+        $user_id = get_current_user_id();
+        $token = sanitize_text_field($_POST['github_token']);
+        update_user_meta($user_id, 'github_token', $token);
+    }
+}
+add_action('admin_init', 'save_github_token');
 ?>
