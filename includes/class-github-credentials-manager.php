@@ -47,7 +47,7 @@ class GitHub_Credentials_Manager {
         echo '<li>Navigate to "Developer settings" > "Personal access tokens".</li>';
         echo '<li>Click "Generate new token".</li>';
         echo '<li>Select the necessary scopes for your token (e.g., repo, user).</li>';
-        echo '<li>Click "Generate token" and copy the token value. <strong>Note:</strong> You will not be able to see it again once you navigate away from the page.</li>';
+        echo '<li>Click "Generate token" and copy the token value. </li>';
         echo '<li>Paste the token in the field below and click "Save Changes".</li>';
         echo '</ol>';
     }
