@@ -80,7 +80,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-For support, open an issue on [GitHub](https://github.com/jacob-laffoon/github-credentials-manager/issues).
+For support, open an issue on [GitHub](https://github.com/jacoblaffoon/github-credentials-manager/issues).
 
 ## Changelog
 
