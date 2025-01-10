@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: WP Repository Credentials Manager
+Plugin Name: Repository Credentials Manager
 Description: A plugin to store GitHub credentials securely in WordPress and make them accessible globally.
 Version: 1.0.0
 Author: Your Name
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Include the main class file
-require_once plugin_dir_path(__FILE__) . 'includes/class-wp-repository-credentials-manager.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-repository-credentials-manager.php';
 
 // Initialize the plugin
 function wp_repository_credentials_manager_init() {

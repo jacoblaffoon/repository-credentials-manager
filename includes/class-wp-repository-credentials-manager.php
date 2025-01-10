@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WP_Repository_Credentials_Manager {
+class Repository_Credentials_Manager {
 
     public function init() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
