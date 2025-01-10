@@ -26,7 +26,7 @@ class GitHub_Credentials_Manager {
         add_settings_section(
             'github_credentials_section',
             'GitHub Credentials Settings',
-            null,
+            array($this, 'settings_section_callback'),
             'github-credentials'
         );
 
@@ -39,9 +39,23 @@ class GitHub_Credentials_Manager {
         );
     }
 
+    public function settings_section_callback() {
+        echo '<p>Enter your GitHub token below. This token will be used to authenticate API requests to GitHub.</p>';
+        echo '<p><strong>Instructions:</strong></p>';
+        echo '<ol>';
+        echo '<li>Go to your GitHub account settings.</li>';
+        echo '<li>Navigate to "Developer settings" > "Personal access tokens".</li>';
+        echo '<li>Click "Generate new token".</li>';
+        echo '<li>Select the necessary scopes for your token (e.g., repo, user).</li>';
+        echo '<li>Click "Generate token" and copy the token value.</li>';
+        echo '<li>Paste the token in the field below and click "Save Changes".</li>';
+        echo '</ol>';
+    }
+
     public function github_token_field_callback() {
         $token = get_option('github_token');
         echo '<input type="text" id="github_token" name="github_token" value="'. esc_attr($token) .'" />';
+        echo '<p class="description">Your GitHub token is required to authenticate API requests.</p>';
     }
 
     public function settings_page() {
@@ -64,3 +78,4 @@ class GitHub_Credentials_Manager {
 function get_github_token() {
     return get_option('github_token');
 }
+?>
