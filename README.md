@@ -1,12 +1,12 @@
-# GitHub Credentials Manager
+# WP Repository Credentials Manager
 
 A WordPress plugin to securely store GitHub credentials and make them accessible globally within your WordPress application.
 
 ## File Structure
-github-credentials-manager/
-├── github-credentials-manager.php
+wp-repository-credentials-manager/
+├── wp-repository-credentials-manager.php
 ├── includes/
-│ └── class-github-credentials-manager.php
+│ └── class-wp-repository-credentials-manager.php
 
 ## Installation
 
@@ -14,17 +14,17 @@ github-credentials-manager/
    - Clone or download the plugin files from the repository.
 
 2. **Upload to WordPress:**
-   - Upload the `github-credentials-manager` directory to the `/wp-content/plugins/` directory.
+   - Upload the `wp-repository-credentials-manager` directory to the `/wp-content/plugins/` directory.
 
 3. **Activate the Plugin:**
-   - Go to the `Plugins` menu in WordPress and activate the `GitHub Credentials Manager` plugin.
+   - Go to the `Plugins` menu in WordPress and activate the `WP Repository Credentials Manager` plugin.
 
 ## Usage
 
 ### Storing GitHub Credentials
 
 1. **Navigate to Settings:**
-   - In the WordPress admin dashboard, go to `Settings` > `GitHub Credentials`.
+   - In the WordPress admin dashboard, go to `Settings` > `Repository Credentials`.
 
 2. **Enter GitHub Token:**
    - Enter your GitHub personal access token in the provided field and click `Save Changes`.

@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class GitHub_Credentials_Manager {
+class WP_Repository_Credentials_Manager {
 
     public function init() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
@@ -13,32 +13,32 @@ class GitHub_Credentials_Manager {
 
     public function add_admin_menu() {
         add_options_page(
-            'GitHub Credentials',
-            'GitHub Credentials',
+            'Repository Credentials',
+            'Repository Credentials',
             'manage_options',
-            'github-credentials',
+            'repository-credentials',
             array($this, 'settings_page')
         );
     }
 
     public function register_settings() {
-        register_setting('github_credentials_options', 'github_token', array(
+        register_setting('repository_credentials_options', 'github_token', array(
             'sanitize_callback' => array($this, 'sanitize_github_token')
         ));
 
         add_settings_section(
-            'github_credentials_section',
-            'GitHub Credentials Settings',
+            'repository_credentials_section',
+            'Repository Credentials Settings',
             array($this, 'settings_section_callback'),
-            'github-credentials'
+            'repository-credentials'
         );
 
         add_settings_field(
             'github_token',
             'GitHub Token',
             array($this, 'github_token_field_callback'),
-            'github-credentials',
-            'github_credentials_section'
+            'repository-credentials',
+            'repository_credentials_section'
         );
     }
 
@@ -70,11 +70,11 @@ class GitHub_Credentials_Manager {
     public function settings_page() {
         ?>
         <div class="wrap">
-            <h1>GitHub Credentials Settings</h1>
+            <h1>Repository Credentials Settings</h1>
             <form method="post" action="options.php">
                 <?php
-                settings_fields('github_credentials_options');
-                do_settings_sections('github-credentials');
+                settings_fields('repository_credentials_options');
+                do_settings_sections('repository-credentials');
                 submit_button();
                 ?>
             </form>
@@ -147,4 +147,3 @@ function save_github_token() {
     }
 }
 add_action('admin_init', 'save_github_token');
-?>
