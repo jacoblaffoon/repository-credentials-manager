@@ -69,10 +69,7 @@ class GitHub_Credentials_Manager {
                 submit_button();
                 ?>
             </form>
-            <h2>Usage Instructions</h2>
-            <h3>Storing GitHub Credentials</h3>
-            <p>Navigate to <strong>Settings > GitHub Credentials</strong> in the WordPress admin dashboard.</p>
-            <p>Follow the detailed instructions on the settings page to generate a GitHub personal access token. Enter the token in the provided field and click <strong>Save Changes</strong>.</p>
+            <hr>
             <h3>Recalling Stored Credentials</h3>
             <p>To recall the stored GitHub credentials in your WordPress application, use the global function <code>get_github_token()</code>. This function retrieves the GitHub token stored in the WordPress database.</p>
             <pre><code class="language-php">// Retrieve the GitHub token
