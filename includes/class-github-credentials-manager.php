@@ -97,6 +97,9 @@ if (is_wp_error($response)) {
         error_log('GitHub API request failed: ' . $response_body);
     }
 }</code></pre>
+            <h3>Test Recall</h3>
+            <p>Current GitHub Token Value:</p>
+            <pre><?php echo esc_html(get_github_token()); ?></pre>
         </div>
         <?php
     }
