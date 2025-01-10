@@ -3,10 +3,12 @@
 A WordPress plugin to securely store GitHub credentials and make them accessible globally within your WordPress application.
 
 ## File Structure
+```
 wp-repository-credentials-manager/
 ├── wp-repository-credentials-manager.php
 ├── includes/
 │ └── class-wp-repository-credentials-manager.php
+```
 
 ## Installation
 
