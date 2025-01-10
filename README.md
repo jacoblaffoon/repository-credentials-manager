@@ -61,3 +61,28 @@ if (is_wp_error($response)) {
         error_log('GitHub API request failed: ' . $response_body);
     }
 }
+```
+
+## Debugging
+
+To test the recall of the stored GitHub token:
+
+1. Navigate to the `Settings > GitHub Credentials` page.
+2. Click the `Toggle Test Recall` button to display the current token value.
+
+## Contributing
+
+Contributions are welcome! Please fork this repository and submit pull requests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support, open an issue on [GitHub](https://github.com/jacob-laffoon/github-credentials-manager/issues).
+
+## Changelog
+
+### v1.0.0
+- Initial release
