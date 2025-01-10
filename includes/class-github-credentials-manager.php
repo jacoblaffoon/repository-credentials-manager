@@ -8,6 +8,7 @@ class GitHub_Credentials_Manager {
     public function init() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'register_settings'));
+        add_action('admin_footer', array($this, 'admin_footer_scripts'));
     }
 
     public function add_admin_menu() {
@@ -62,7 +63,7 @@ class GitHub_Credentials_Manager {
     public function github_token_field_callback() {
         $user_id = get_current_user_id();
         $token = get_user_meta($user_id, 'github_token', true);
-        echo '<input type="text" id="github_token" name="github_token" value="'. esc_attr($token) .'" />';
+        echo '<input type="text" id="github_token" name="github_token" value="'. esc_attr($token) .'" style="width: 100%;" />';
         echo '<p class="description">Your GitHub token is required to authenticate API requests.</p>';
     }
 
@@ -106,9 +107,27 @@ if (is_wp_error($response)) {
     }
 }</code></pre>
             <h3>Test Recall</h3>
-            <p>Current GitHub Token Value:</p>
-            <pre><?php echo esc_html(get_github_token()); ?></pre>
+            <button id="toggle-test-recall" class="button">Toggle Test Recall</button>
+            <div id="test-recall" style="display: none;">
+                <p>Current GitHub Token Value:</p>
+                <pre><?php echo esc_html(get_github_token()); ?></pre>
+            </div>
         </div>
+        <?php
+    }
+
+    public function admin_footer_scripts() {
+        ?>
+        <script type="text/javascript">
+            document.getElementById('toggle-test-recall').addEventListener('click', function() {
+                var testRecallDiv = document.getElementById('test-recall');
+                if (testRecallDiv.style.display === 'none') {
+                    testRecallDiv.style.display = 'block';
+                } else {
+                    testRecallDiv.style.display = 'none';
+                }
+            });
+        </script>
         <?php
     }
 }
